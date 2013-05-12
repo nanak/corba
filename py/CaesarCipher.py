@@ -30,8 +30,31 @@ class CaesarCipher:
             if plain[i] == " ":
                 encrypted += " "
         return encrypted
+    def decrypt(self, text):
+        encrypted = list(text)
+        decrypted = "Decrypted text: "
+        for i in range(len(encrypted)):
+            for j in range(len(alph)):
+                # print i, j
+                if encrypted[i] == alph[j]:
+                    if j < len(alph)-3:
+                        todec = alph[j-3]
+                    elif j == 2:
+                        todec = alph[len(alph)-3]
+                    elif j == 1:
+                        todec = alph[len(alph)-2]
+                    elif j == 0:
+                        todec = alph[len(alph)]
+                    else:
+                        print "DEBUG: nichts true"
+                    decrypted += todec
+            if encrypted[i] == " ":
+                decrypted += " "
+        return decrypted
 
 x = CaesarCipher()
-# print x.encrypt("ABCXYZabcxyz")
+print x.encrypt("ABCXYZabcxyz")
+print x.decrypt("DEFabcdefABC")
 print x.encrypt("Hallo das ist ein Test.")
+print x.decrypt("Kdoor gdv lvw hlq Whvw")
 # orb = CORBA.ORB_init(sys.argv)
