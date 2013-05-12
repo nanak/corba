@@ -33,8 +33,8 @@ _0_Caesar._tc_CaesarCipher = omniORB.tcInternal.createTypeCode(_0_Caesar._d_Caes
 omniORB.registerType(CaesarCipher._NP_RepositoryId, _0_Caesar._d_CaesarCipher, _0_Caesar._tc_CaesarCipher)
 
 # CaesarCipher operations and attributes
-CaesarCipher._d_encode = ((), ((omniORB.tcInternal.tv_string,0), ), None)
-CaesarCipher._d_decode = ((), ((omniORB.tcInternal.tv_string,0), ), None)
+CaesarCipher._d_encode = (((omniORB.tcInternal.tv_string,0), ), ((omniORB.tcInternal.tv_string,0), ), None)
+CaesarCipher._d_decode = (((omniORB.tcInternal.tv_string,0), ), ((omniORB.tcInternal.tv_string,0), ), None)
 
 # CaesarCipher object reference
 class _objref_CaesarCipher (CORBA.Object):
