@@ -1,6 +1,10 @@
 #!/usr/bin/env python2
 
+import sys
+import os
 import CORBA
+import Caesar
+import Caesar__POA
 
 alph = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N",
         "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z",
@@ -8,7 +12,7 @@ alph = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N",
         "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"]
 
 
-class CaesarCipher:
+class CaesarCipher (Caesar__POA.CaesarCipher):
     def encrypt(self, text):
         plain = list(text)
         encrypted = "Encryped text: "
@@ -30,6 +34,7 @@ class CaesarCipher:
             if plain[i] == " ":
                 encrypted += " "
         return encrypted
+
     def decrypt(self, text):
         encrypted = list(text)
         decrypted = "Decrypted text: "
@@ -57,4 +62,14 @@ print x.encrypt("ABCXYZabcxyz")
 print x.decrypt("DEFabcdefABC")
 print x.encrypt("Hallo das ist ein Test.")
 print x.decrypt("Kdoor gdv lvw hlq Whvw")
-# orb = CORBA.ORB_init(sys.argv)
+
+orb = CORBA.ORB_init(sys.argv)
+poa = orb.resolve_initial_references("RootPOA")
+
+servant = CaesarCipher()
+poa.activate_object(servant)
+
+print orb.object_to_string(servant._this())
+
+poa._get_the_POAManager().activate()
+orb.run()

@@ -1,0 +1,6 @@
+module Caesar {
+  interface CaesarCipher {
+    string encode();
+    string decode();
+  };
+};
