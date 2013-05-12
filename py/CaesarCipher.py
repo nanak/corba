@@ -1,15 +1,17 @@
 #!/usr/bin/env python2
 
 import sys
-import os
 import CORBA
-import Caesar
 import Caesar__POA
 
 alph = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M",
         "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z",
         "a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m",
         "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"]
+
+''' Diese Klasse implementiert den Caesar Verschluesselungsalgorithmus
+    mehr oder weniger effizient. Desweiteren stellt sie einen CORBA
+    Server zur Verfuegung. '''
 
 
 class CaesarCipher (Caesar__POA.CaesarCipher):
@@ -69,7 +71,7 @@ poa = orb.resolve_initial_references("RootPOA")
 servant = CaesarCipher()
 poa.activate_object(servant)
 
-print orb.object_to_string(servant._this())
+# print orb.object_to_string(servant._this())
 
 poa._get_the_POAManager().activate()
 orb.run()
